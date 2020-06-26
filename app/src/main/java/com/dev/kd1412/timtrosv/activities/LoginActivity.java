@@ -1,20 +1,17 @@
-package com.dev.kd1412.timtrosv.Activities;
+package com.dev.kd1412.timtrosv.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.dev.kd1412.timtrosv.R;
-import com.dev.kd1412.timtrosv.View.HomeFragment;
 import com.dev.kd1412.timtrosv.databinding.ActivityLoginBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

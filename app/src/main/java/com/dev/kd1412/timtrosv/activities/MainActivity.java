@@ -1,4 +1,4 @@
-package com.dev.kd1412.timtrosv.Activities;
+package com.dev.kd1412.timtrosv.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +10,8 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.dev.kd1412.timtrosv.View.HomeFragment;
-import com.dev.kd1412.timtrosv.View.SearchFragment;
+import com.dev.kd1412.timtrosv.views.HomeFragment;
+import com.dev.kd1412.timtrosv.views.SearchFragment;
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

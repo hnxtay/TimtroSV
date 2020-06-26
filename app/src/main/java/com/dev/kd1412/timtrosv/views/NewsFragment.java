@@ -1,4 +1,4 @@
-package com.dev.kd1412.timtrosv.View;
+package com.dev.kd1412.timtrosv.views;
 
 import android.os.Bundle;
 
