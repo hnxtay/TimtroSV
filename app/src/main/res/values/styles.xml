@@ -7,8 +7,5 @@
 <!--        <item name="colorPrimaryLight">@color/colorPrimaryLight</item>-->
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="AppTheme.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-            <item name="android:windowBackground"></item>
-    </style>
 
 </resources>

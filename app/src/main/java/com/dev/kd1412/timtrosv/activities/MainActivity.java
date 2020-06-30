@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private HomeFragment homeFragment;
     private SearchFragment searchFragment;
     private ActivityMainBinding binding;
-    private NavController navController;
+    public static NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,5 +50,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
         }
         return true;
+    }
+
+    public void setFragment(int id){
+        navController.navigate(id);
     }
 }

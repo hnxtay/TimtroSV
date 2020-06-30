@@ -1,6 +1,7 @@
 package com.dev.kd1412.timtrosv.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,10 +19,12 @@ public class HomeRoomAdapter extends RecyclerView.Adapter<HomeRoomAdapter.RoomAd
     private ArrayList<Room> roomArray;
     private OnItemClickListener listener;
     private Room room;
+    OnItemClickListener itemClickListener;
 
 
-    public HomeRoomAdapter(ArrayList<Room> roomArray) {
+    public HomeRoomAdapter(ArrayList<Room> roomArray, OnItemClickListener itemClickListener) {
         this.roomArray = roomArray;
+        this.itemClickListener = itemClickListener;
     }
 
 
@@ -30,7 +33,7 @@ public class HomeRoomAdapter extends RecyclerView.Adapter<HomeRoomAdapter.RoomAd
     public HomeRoomAdapter.RoomAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RoomItemBinding roomItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext())
                 , R.layout.room_item, parent, false);
-        return new RoomAdapterViewHolder(roomItemBinding);
+        return new RoomAdapterViewHolder(roomItemBinding,itemClickListener);
     }
 
     @Override
@@ -50,17 +53,26 @@ public class HomeRoomAdapter extends RecyclerView.Adapter<HomeRoomAdapter.RoomAd
         notifyDataSetChanged();
     }
 
-    public class RoomAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class RoomAdapterViewHolder extends RecyclerView.ViewHolder implements View
+            .OnClickListener {
         public RoomItemBinding itemBinding;
+        OnItemClickListener onClickListener;
 
-        public RoomAdapterViewHolder(@NonNull RoomItemBinding itemBinding) {
+        public RoomAdapterViewHolder(@NonNull RoomItemBinding itemBinding, OnItemClickListener onClickListener) {
             super(itemBinding.getRoot());
             this.itemBinding = itemBinding;
+            this.onClickListener = onClickListener;
+            itemBinding.getRoot().setOnClickListener(this);
         }
 
         public void bind(Object o) {
             itemBinding.setVariable(BR.room, o);
             itemBinding.hasPendingBindings();
+        }
+
+        @Override
+        public void onClick(View v) {
+            onClickListener.onItemClick(getAdapterPosition());
         }
     }
 }
