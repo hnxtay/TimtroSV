@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment implements OnItemClickListener{
         homeBinding.fabHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(requireContext(), "tdasd", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.action_navigation_home_to_uploadFragmentStep1);
             }
         });
     }
