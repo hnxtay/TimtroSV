@@ -10,17 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dev.kd1412.timtrosv.R;
-import com.dev.kd1412.timtrosv.databinding.FragmentUploadRoomBinding;
+import com.dev.kd1412.timtrosv.databinding.FragmentUploadStep1Binding;
 
-
-public class UploadRoomFragment extends Fragment {
-    private FragmentUploadRoomBinding uploadRoomBinding ;
+public class UploadFragmentStep1 extends Fragment {
+    private FragmentUploadStep1Binding uploadStep1Binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment\
-        uploadRoomBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_upload_room,container,false);
+        // Inflate the layout for this fragment
+        uploadStep1Binding = DataBindingUtil.inflate(inflater,R.layout.fragment_upload_step1,container,false);
 
-        return uploadRoomBinding.getRoot();
+        return uploadStep1Binding.getRoot();
     }
 }
