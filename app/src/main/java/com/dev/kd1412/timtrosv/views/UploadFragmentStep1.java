@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.FragmentUploadStep1Binding;
 
-import static com.dev.kd1412.timtrosv.activities.MainActivity.navController;
 
 public class UploadFragmentStep1 extends Fragment implements View.OnClickListener {
     private FragmentUploadStep1Binding uploadStep1Binding;
@@ -36,7 +35,7 @@ public class UploadFragmentStep1 extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        uploadStep1Binding = DataBindingUtil.inflate(inflater,R.layout.fragment_upload_step1,container,false);
+        uploadStep1Binding = DataBindingUtil.inflate(inflater, R.layout.fragment_upload_step1, container, false);
 
         uploadStep1Binding.fabCancel.setOnClickListener(this);
         uploadStep1Binding.fabNext.setOnClickListener(this);
@@ -47,12 +46,12 @@ public class UploadFragmentStep1 extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.fab_cancel:
-                navController.navigateUp();
+                Navigation.findNavController(requireView()).navigateUp();
                 break;
-                case R.id.fab_next:
-                    navController.navigate(R.id.action_uploadFragmentStep1_to_uploadFragmentStep2);
+            case R.id.fab_next:
+                Navigation.findNavController(requireView()).navigate(R.id.action_uploadFragmentStep1_to_uploadFragmentStep2);
                 break;
         }
     }

@@ -24,6 +24,11 @@
     <string name="district">Quận / Huyện / Thị xã</string>
     <string name="sub_district">Phường / Xã / Thị trấn</string>
     <string name="address">Địa chỉ</string>
+    <string name="type_news">Loại tin</string>
+    <string name="type_room">Loại phòng</string>
+    <string name="price_room">Giá phòng (VND)</string>
+    <string name="acreage_room">Diện tích (m2)</string>
+    <string name="utilities_room">Tiện ích</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

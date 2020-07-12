@@ -62,7 +62,7 @@ public class HomeRoomAdapter extends RecyclerView.Adapter<HomeRoomAdapter.RoomAd
             super(itemBinding.getRoot());
             this.itemBinding = itemBinding;
             this.onClickListener = onClickListener;
-            itemBinding.getRoot().setOnClickListener(this);
+             itemBinding.getRoot().setOnClickListener(this);
         }
 
         public void bind(Object o) {

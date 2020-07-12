@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -81,7 +80,9 @@
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         tools:text="Cài đặt" />
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"

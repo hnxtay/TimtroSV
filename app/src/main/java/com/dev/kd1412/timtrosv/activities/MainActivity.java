@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private HomeFragment homeFragment;
     private SearchFragment searchFragment;
     private ActivityMainBinding binding;
-    public static NavController navController;
+    public  NavController navController;
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
         switch (destination.getId()) {
             case R.id.uploadFragmentStep1:
+            case R.id.uploadFragmentStep2:
+            case R.id.uploadFragmentStep3:
                 bottomNavigationView.setVisibility(BottomNavigationView.GONE);
                 break;
 

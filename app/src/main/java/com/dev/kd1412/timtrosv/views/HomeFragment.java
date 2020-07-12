@@ -40,10 +40,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.dev.kd1412.timtrosv.activities.MainActivity.navController;
 
-
-public class HomeFragment extends Fragment implements OnItemClickListener{
+public class HomeFragment extends Fragment implements OnItemClickListener {
     public ArrayList<Room> roomArrayList;
     private Room room;
     public HomeRoomAdapter roomAdapter;
@@ -65,7 +63,7 @@ public class HomeFragment extends Fragment implements OnItemClickListener{
         homeBinding.fabHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_navigation_home_to_uploadFragmentStep1);
+                Navigation.findNavController(requireView()).navigate(R.id.action_navigation_home_to_uploadFragmentStep1);
             }
         });
     }
@@ -82,12 +80,12 @@ public class HomeFragment extends Fragment implements OnItemClickListener{
             @Override
             public void onResponse(Call<Rooms> call, Response<Rooms> response) {
 
-                if (response ==  null){
+                if (response == null) {
                     Toast.makeText(requireContext(), "Không ổn rồi Đại vương ơi T_T", Toast.LENGTH_LONG)
                             .show();
-                }else{
-                    for (Room room : response.body().getRooms()){
-                        room = new Room(room.id,room.mImg,room.mPrice,room.mLocation,room.mAcreage);
+                } else {
+                    for (Room room : response.body().getRooms()) {
+                        room = new Room(room.id, room.mImg, room.mPrice, room.mLocation, room.mAcreage);
                         roomArrayList.add(room);
                         roomAdapter.updateList(roomArrayList);
                     }
@@ -96,7 +94,7 @@ public class HomeFragment extends Fragment implements OnItemClickListener{
 
             @Override
             public void onFailure(Call<Rooms> call, Throwable t) {
-                Log.d(TAG,""+t);
+                Log.d(TAG, "" + t);
             }
         });
     }
@@ -104,14 +102,13 @@ public class HomeFragment extends Fragment implements OnItemClickListener{
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
     public void onItemClick(int position) {
         room = roomArrayList.get(position);
-       navController.navigate(R.id.action_navigation_home_to_roomDetailFragment);
-
-
+        Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionNavigationHomeToRoomDetailFragment(room));
     }
 
 }

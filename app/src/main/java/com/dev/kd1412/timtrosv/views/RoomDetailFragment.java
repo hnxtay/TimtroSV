@@ -23,9 +23,6 @@ import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.FragmentRoomDetailBinding;
 import com.dev.kd1412.timtrosv.model.Room;
 
-import static androidx.navigation.NavOptions.*;
-import static com.dev.kd1412.timtrosv.activities.MainActivity.navController;
-
 public class RoomDetailFragment extends Fragment {
 
     @Override
@@ -46,18 +43,18 @@ public class RoomDetailFragment extends Fragment {
         FragmentRoomDetailBinding roomDetailBinding = DataBindingUtil
                 .inflate(inflater, R.layout.fragment_room_detail, container, false);
 
-        roomDetailBinding.toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onbackPress();
-            }
-        });
+        Room room = RoomDetailFragmentArgs.fromBundle(requireArguments()).getRoom();
+        roomDetailBinding.setRoom(room);
+
+        roomDetailBinding.toolbar.setOnClickListener(v -> onbackPress());
 
         return roomDetailBinding.getRoot();
-    }public void onbackPress() {
-        navController.popBackStack();
     }
-    
+
+    public void onbackPress() {
+        Navigation.findNavController(requireView()).popBackStack();
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
