@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. by KingD
+  -->
+
+<resources>
+    <string-array name="city">
+        <item>Đà Nẵng</item>
+    </string-array>
+    <string-array name="district">
+        <item>Hải Châu</item>
+        <item>Cẩm Lệ</item>
+        <item>Thanh Khê</item>
+        <item>Liên Chiểu</item>
+        <item>Ngũ Hành Sơn</item>
+        <item>Sơn Trà</item>
+        <item>Hòa Vang</item>
+        <item>Hoàng Sa</item>
+    </string-array>
+
+    <string-array name="sub_district">
+    </string-array>
+</resources>
