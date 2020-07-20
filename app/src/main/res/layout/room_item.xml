@@ -19,7 +19,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/img_room"
+            android:id="@+id/item_img_room"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
@@ -37,7 +37,7 @@
             android:layout_marginTop="8dp"
             android:text="@{room.mLocation}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_room" />
+            app:layout_constraintTop_toBottomOf="@+id/item_img_room" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_price"

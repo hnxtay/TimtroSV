@@ -42,7 +42,7 @@ public class RoomImageAdapter extends RecyclerView.Adapter<RoomImageAdapter.Room
         private ImageView img_room;
         public RoomImageVH(@NonNull View itemView) {
             super(itemView);
-            img_room = (ImageView) itemView.findViewById(R.id.img_room);
+            img_room = (ImageView) itemView.findViewById(R.id.item_img_room);
         }
     }
 }

@@ -9,8 +9,10 @@ import androidx.databinding.BindingAdapter;
 import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
 
-public class Room implements Parcelable {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Room implements Parcelable {
     @SerializedName("id")
     public int id;
 
@@ -26,15 +28,19 @@ public class Room implements Parcelable {
     @SerializedName("room_acreage")
     public int mAcreage;
 
+    @SerializedName("room_utilities")
+    public List<String> mUtilities;
+
     public Room() {
     }
 
-    public Room(int id, String mImg, int mPrice, String mLocation, int mAcreage) {
+    public Room(int id, String mImg, int mPrice, String mLocation, int mAcreage, List<String> mUtilities) {
         this.id = id;
         this.mImg = mImg;
         this.mPrice = mPrice;
         this.mLocation = mLocation;
         this.mAcreage = mAcreage;
+        this.mUtilities = mUtilities;
     }
 
     protected Room(Parcel in) {
@@ -43,6 +49,7 @@ public class Room implements Parcelable {
         mPrice = in.readInt();
         mLocation = in.readString();
         mAcreage = in.readInt();
+        mUtilities = in.createStringArrayList();
     }
 
     @Override
@@ -52,6 +59,7 @@ public class Room implements Parcelable {
         dest.writeInt(mPrice);
         dest.writeString(mLocation);
         dest.writeInt(mAcreage);
+        dest.writeStringList(mUtilities);
     }
 
     @Override
@@ -72,10 +80,70 @@ public class Room implements Parcelable {
     };
 
     @BindingAdapter("room_image")
-    public static void loadImage(ImageView view, String imageUrl) {
+    public static void
+    loadImage(ImageView view, String imageUrl) {
         Glide.with(view.getContext())
                 .load(imageUrl)
                 .into(view);
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "mImg='" + mImg + '\'' +
+                ", mPrice=" + mPrice +
+                ", mLocation='" + mLocation + '\'' +
+                ", mAcreage=" + mAcreage +
+                ", mUtilities=" + mUtilities +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getmImg() {
+        return mImg;
+    }
+
+    public void setmImg(String mImg) {
+        this.mImg = mImg;
+    }
+
+    public int getmPrice() {
+        return mPrice;
+    }
+
+    public void setmPrice(int mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public String getmLocation() {
+        return mLocation;
+    }
+
+    public void setmLocation(String mLocation) {
+        this.mLocation = mLocation;
+    }
+
+    public int getmAcreage() {
+        return mAcreage;
+    }
+
+    public void setmAcreage(int mAcreage) {
+        this.mAcreage = mAcreage;
+    }
+
+    public List<String> getmUtilities() {
+        return mUtilities;
+    }
+
+    public void setmUtilities(List<String> mUtilities) {
+        this.mUtilities = mUtilities;
     }
 }
 

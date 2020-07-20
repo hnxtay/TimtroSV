@@ -21,6 +21,7 @@ public class UploadFragmentStep2 extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -45,6 +46,9 @@ public class UploadFragmentStep2 extends Fragment implements View.OnClickListene
         switch (v.getId()){
             case R.id.fab_back:
                 Navigation.findNavController(requireView()).navigateUp();
+                break;
+            case R.id.fab_next:
+                Navigation.findNavController(requireView()).navigate(R.id.action_uploadFragmentStep2_to_uploadFragmentStep3);
         }
     }
 }

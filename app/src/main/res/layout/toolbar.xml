@@ -24,8 +24,7 @@
                 android:transitionGroup="false"
                 app:buttonGravity="center_vertical"
                 app:contentInsetStart="0dp"
-                app:logo="@drawable/logo"
-                app:menu="@menu/toolbar_more" />
+                app:logo="@drawable/logo"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

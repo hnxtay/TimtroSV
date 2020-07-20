@@ -41,6 +41,7 @@ public class ProfileFragment extends Fragment {
             AuthUI.getInstance().signOut(v.getContext()).addOnCompleteListener(task -> {
                 Intent intent = new Intent(requireContext(), LoginActivity.class);
                 startActivity(intent);
+                requireActivity().finish();
             });
         });
         return profileBinding.getRoot();

@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-    <variable
-        name="room"
-        type="com.dev.kd1412.timtrosv.model.Room" />
+
+        <variable
+            name="room"
+            type="com.dev.kd1412.timtrosv.model.Room" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -41,10 +42,11 @@
 
 
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager2"
+                    android:id="@+id/view_pager"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -53,12 +55,12 @@
                     android:id="@+id/tv_location"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginTop="8dp"
                     android:text="@{room.mLocation}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/viewPager2"
+                    app:layout_constraintTop_toBottomOf="@+id/view_pager"
                     tools:text="16 Lê Thiện Trị, Ngũ Hành Sơn, Đà Nẵng" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -66,9 +68,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{@string/acreage(room.mAcreage)}"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/colorPrimary"
+                    android:text="@{@string/acreage_detail(room.mAcreage)}"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_location"
                     tools:text="20 m2" />
@@ -80,13 +81,13 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{@string/price(room.mPrice)}"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textColor="@color/colorAccent"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
                     app:layout_constraintStart_toEndOf="@+id/tv_acreage"
                     app:layout_constraintTop_toBottomOf="@+id/tv_location"
                     tools:text="2 000 000 đ" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_utilities"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"

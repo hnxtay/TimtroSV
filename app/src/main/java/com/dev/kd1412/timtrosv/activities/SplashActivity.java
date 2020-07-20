@@ -7,12 +7,28 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.SplashScreenBinding;
+import com.dev.kd1412.timtrosv.model.User;
+import com.dev.kd1412.timtrosv.network.RoomServiceApi;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SplashActivity extends AppCompatActivity {
     private SplashScreenBinding splashScreenBinding;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +47,9 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
+            SplashActivity.this.finish();
         }
 
         @Override

@@ -33,8 +33,10 @@ import com.dev.kd1412.timtrosv.adapters.HomeRoomAdapter;
 import com.dev.kd1412.timtrosv.databinding.FragmentHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,25 +78,17 @@ public class HomeFragment extends Fragment implements OnItemClickListener {
         homeBinding.rcvHome.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
         RoomService roomService = RoomServiceApi.getInstance();
-        roomService.getRooms().enqueue(new Callback<Rooms>() {
+        roomService.getRooms().enqueue(new Callback<List<Room>>() {
             @Override
-            public void onResponse(Call<Rooms> call, Response<Rooms> response) {
-
-                if (response == null) {
-                    Toast.makeText(requireContext(), "Không ổn rồi Đại vương ơi T_T", Toast.LENGTH_LONG)
-                            .show();
-                } else {
-                    for (Room room : response.body().getRooms()) {
-                        room = new Room(room.id, room.mImg, room.mPrice, room.mLocation, room.mAcreage);
-                        roomArrayList.add(room);
-                        roomAdapter.updateList(roomArrayList);
-                    }
-                }
+            public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
+                roomAdapter.updateList(response.body());
             }
 
             @Override
-            public void onFailure(Call<Rooms> call, Throwable t) {
+            public void onFailure(Call<List<Room>> call, Throwable t) {
                 Log.d(TAG, "" + t);
+                Toast.makeText(requireContext(), "Không ổn rồi Đại vương ơi T_T fail", Toast.LENGTH_LONG)
+                        .show();
             }
         });
     }
@@ -106,9 +100,8 @@ public class HomeFragment extends Fragment implements OnItemClickListener {
     }
 
     @Override
-    public void onItemClick(int position) {
-        room = roomArrayList.get(position);
-        Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionNavigationHomeToRoomDetailFragment(room));
+    public void onItemClick(Room position) {
+        Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionNavigationHomeToRoomDetailFragment(position));
     }
 
 }

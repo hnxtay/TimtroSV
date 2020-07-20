@@ -7,23 +7,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 
-import android.transition.Fade;
-import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.dev.kd1412.timtrosv.R;
+import com.dev.kd1412.timtrosv.adapters.ImageAdapter;
+import com.dev.kd1412.timtrosv.adapters.UtilitiesAdapter;
 import com.dev.kd1412.timtrosv.databinding.FragmentRoomDetailBinding;
 import com.dev.kd1412.timtrosv.model.Room;
+import com.dev.kd1412.timtrosv.model.Utilities;
+
+import java.util.ArrayList;
 
 public class RoomDetailFragment extends Fragment {
+    private Utilities utilities;
+    private ArrayList<Utilities> utilitiesArrayList = new ArrayList<>();
+    private UtilitiesAdapter utilitiesAdapter;
+    public static final String TAG = "RoomDetail";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,12 +51,27 @@ public class RoomDetailFragment extends Fragment {
         Room room = RoomDetailFragmentArgs.fromBundle(requireArguments()).getRoom();
         roomDetailBinding.setRoom(room);
 
-        roomDetailBinding.toolbar.setOnClickListener(v -> onbackPress());
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add(room.mImg);
+        arrayList.add(room.mImg);
+        Log.d(TAG, "onCreateView: " + arrayList);
+
+        ImageAdapter imageAdapter = new ImageAdapter(arrayList);
+        roomDetailBinding.viewPager.setAdapter(imageAdapter);
+        for (int i = 0; i < room.getmUtilities().size(); ++i){
+            utilities = new Utilities(room.mUtilities.get(i));
+            utilitiesArrayList.add(utilities);
+        }
+        utilitiesAdapter = new UtilitiesAdapter(utilitiesArrayList);
+        roomDetailBinding.rcvUtilities.setAdapter(utilitiesAdapter);
+        roomDetailBinding.rcvUtilities.setLayoutManager(new GridLayoutManager(requireContext(),4));
+
+        roomDetailBinding.toolbar.setOnClickListener(v -> onBackPress());
 
         return roomDetailBinding.getRoot();
     }
 
-    public void onbackPress() {
+    public void onBackPress() {
         Navigation.findNavController(requireView()).popBackStack();
     }
 

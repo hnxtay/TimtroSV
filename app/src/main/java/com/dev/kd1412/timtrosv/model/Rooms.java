@@ -8,6 +8,10 @@ public class Rooms {
     @SerializedName("rooms")
     private List<Room> rooms;
 
+    public Rooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
     public List<Room> getRooms() {
         return rooms;
     }

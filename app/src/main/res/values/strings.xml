@@ -2,9 +2,10 @@
     <string name="app_name">TimtroSV</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="my_name">Hồ Nguyễn Xuân Tây</string>
-    <string name="login">Đăng nhập</string>
-    <string name="setting">Cài đặt</string>
+    <string name="text_login">Đăng nhập</string>
+    <string name="text_setting">Cài đặt</string>
     <string name="logout">Đăng xuất</string>
+    <string name="text_debug">Debug</string>
     <string name="user_role">Người cho thuê</string>
     <string name="news_fragment">Đây là trang News thui</string>
     <string name="search_fragment">Đây là trang Search thui</string>
@@ -13,12 +14,14 @@
     <string name="profile_fragment">Đây là trang Profile thui</string>
     <string name="price">Giá: %,dđ</string>
     <string name="acreage">%d m2</string>
+    <string name="acreage_detail">Diện tích: %dm2</string>
     <string name="room_detail">Chi tiết phòng trọ</string>
     <string name="splash_loading">Đang tải dữ liệu...</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="upload">Upload</string>
     <string name="upload_post">Đăng bài viết</string>
     <string name="city">Tỉnh / Thành Phố</string>
     <string name="district">Quận / Huyện / Thị xã</string>

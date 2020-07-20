@@ -11,9 +11,12 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.FragmentUploadStep1Binding;
+
+import java.util.List;
 
 
 public class UploadFragmentStep1 extends Fragment implements View.OnClickListener {
@@ -39,6 +42,14 @@ public class UploadFragmentStep1 extends Fragment implements View.OnClickListene
 
         uploadStep1Binding.fabCancel.setOnClickListener(this);
         uploadStep1Binding.fabNext.setOnClickListener(this);
+
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_menu_item
+                , getResources().getStringArray(R.array.city));
+        ArrayAdapter<String> districtAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown_menu_item
+                , getResources().getStringArray(R.array.district));
+
+        uploadStep1Binding.edtCity.setAdapter(cityAdapter);
+        uploadStep1Binding.edtDistrict.setAdapter(districtAdapter);
 
         return uploadStep1Binding.getRoot();
     }

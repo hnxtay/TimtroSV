@@ -10,9 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.ActivityLoginBinding;
+import com.dev.kd1412.timtrosv.model.User;
+import com.dev.kd1412.timtrosv.network.RoomServiceApi;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -27,6 +30,10 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class LoginActivity extends AppCompatActivity {
     private EditText edt_username, edt_password;
@@ -38,10 +45,35 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (FirebaseAuth.getInstance().getCurrentUser() != null){
-            Intent intent= new Intent(getApplicationContext(), MainActivity.class);
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null){
+            Intent intent= new Intent(getApplicationContext(), SplashActivity.class);
             startActivity(intent);
             LoginActivity.this.finish();
+            User user = new User(firebaseUser.getUid(),firebaseUser.getDisplayName()
+                    ,"Người cho thuê","",firebaseUser.getEmail()
+                    ,firebaseUser.getPhoneNumber());
+
+            RoomServiceApi.getInstance().getUser(firebaseUser.getUid()).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+
+                }
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+
+                }
+            });
+//            RoomServiceApi.getInstance().postUser(user).enqueue(new Callback<User>() {
+//                @Override
+//                public void onResponse(Call<User> call, Response<User> response) {
+//
+//                }
+//                @Override
+//                public void onFailure(Call<User> call, Throwable t) {
+//
+//                }
+//            });
         }
     }
 
@@ -97,8 +129,6 @@ public class LoginActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
                 Intent intent= new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 LoginActivity.this.finish();
