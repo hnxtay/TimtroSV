@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
 package com.dev.kd1412.timtrosv.activities;
 
 import androidx.annotation.Nullable;
@@ -50,30 +53,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent= new Intent(getApplicationContext(), SplashActivity.class);
             startActivity(intent);
             LoginActivity.this.finish();
-            User user = new User(firebaseUser.getUid(),firebaseUser.getDisplayName()
-                    ,"Người cho thuê","",firebaseUser.getEmail()
-                    ,firebaseUser.getPhoneNumber());
-
-            RoomServiceApi.getInstance().getUser(firebaseUser.getUid()).enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-
-                }
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-
-                }
-            });
-//            RoomServiceApi.getInstance().postUser(user).enqueue(new Callback<User>() {
-//                @Override
-//                public void onResponse(Call<User> call, Response<User> response) {
-//
-//                }
-//                @Override
-//                public void onFailure(Call<User> call, Throwable t) {
-//
-//                }
-//            });
         }
     }
 

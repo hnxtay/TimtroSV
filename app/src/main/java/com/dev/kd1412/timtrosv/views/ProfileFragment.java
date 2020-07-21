@@ -16,6 +16,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.dev.kd1412.timtrosv.R;
+import com.dev.kd1412.timtrosv.activities.DebugActivity;
 import com.dev.kd1412.timtrosv.activities.LoginActivity;
 import com.dev.kd1412.timtrosv.databinding.FragmentProfileBinding;
 import com.firebase.ui.auth.AuthUI;
@@ -43,6 +44,11 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
                 requireActivity().finish();
             });
+        });
+
+        profileBinding.btnDebug.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), DebugActivity.class);
+            startActivity(intent);
         });
         return profileBinding.getRoot();
     }

@@ -1,3 +1,8 @@
+
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 package com.dev.kd1412.timtrosv.views;
 
 import android.os.Bundle;
