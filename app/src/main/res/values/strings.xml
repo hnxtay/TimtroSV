@@ -32,6 +32,10 @@
     <string name="price_room">Giá phòng (VND)</string>
     <string name="acreage_room">Diện tích (m2)</string>
     <string name="utilities_room">Tiện ích</string>
+    <string name="text_user_already_exists">User already exists</string>
+    <string name="text_update">Cập nhật</string>
+    <string name="text_room_uploaded">Phòng đã đăng</string>
+    <string name="text_search_result">Kết quả tìm được(3)</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

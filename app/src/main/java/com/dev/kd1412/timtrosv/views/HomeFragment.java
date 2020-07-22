@@ -104,8 +104,8 @@ public class HomeFragment extends Fragment implements OnItemClickListener {
     }
 
     @Override
-    public void onItemClick(Room position) {
-        Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionNavigationHomeToRoomDetailFragment(position));
+    public void onItemClick(Room room) {
+        Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionNavigationHomeToRoomDetailFragment(room));
     }
 
 }

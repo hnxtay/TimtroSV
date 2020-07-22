@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-    </data>
+    <data></data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -81,9 +80,7 @@
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         tools:text="Cài đặt" />
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -93,22 +90,23 @@
                     app:cardCornerRadius="10dp">
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_logout"
+                        android:id="@+id/tv_room"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_baseline_exit_to_app_24"
+                        android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
                         android:drawableTint="@color/colorPrimary"
                         android:padding="16dp"
-                        android:text="@string/logout"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                        android:text="@string/text_room_uploaded"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                        tools:text="Phòng đã đăng" />
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_debug"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="16dp"
                     android:clickable="true"
                     app:cardCornerRadius="10dp">
@@ -121,6 +119,28 @@
                         android:drawableTint="@color/colorPrimary"
                         android:padding="16dp"
                         android:text="@string/text_debug"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="10dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_baseline_exit_to_app_24"
+                        android:drawableTint="@color/colorPrimary"
+                        android:padding="16dp"
+                        android:text="@string/logout"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

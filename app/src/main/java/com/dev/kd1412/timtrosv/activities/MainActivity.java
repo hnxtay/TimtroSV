@@ -1,5 +1,6 @@
 package com.dev.kd1412.timtrosv.activities;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         navController.addOnDestinationChangedListener(this);
+
+        this.getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true ) {
+            @Override
+            public void handleOnBackPressed() {
+
+            }
+        });
     }
 
     @Override

@@ -16,6 +16,7 @@
 
         <ImageView
             android:id="@+id/img_utilities"
+            android:tint="@color/colorPrimary"
             android:layout_width="30dp"
             android:layout_height="30dp" />
 

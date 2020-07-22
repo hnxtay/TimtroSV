@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (firebaseUser != null){
-            Intent intent= new Intent(getApplicationContext(), SplashActivity.class);
+        if (firebaseUser != null) {
+            Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
             startActivity(intent);
             LoginActivity.this.finish();
         }
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityLoginBinding binding = DataBindingUtil.setContentView(this,R.layout.activity_login);
+        ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient  = GoogleSignIn.getClient(this, googleSignInOptions);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
 
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -105,10 +106,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if (requestCode == RC_SIGN_IN) {
             IdpResponse response = IdpResponse.fromResultIntent(data);
-
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                Intent intent= new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 LoginActivity.this.finish();
                 // ...
@@ -120,5 +120,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
 }
