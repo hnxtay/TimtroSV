@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private HomeFragment homeFragment;
     private SearchFragment searchFragment;
     private ActivityMainBinding binding;
-    public  NavController navController;
+    public NavController navController;
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         navController.addOnDestinationChangedListener(this);
 
-        this.getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true ) {
+        this.getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
 
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.uploadFragmentStep1:
             case R.id.uploadFragmentStep2:
             case R.id.uploadFragmentStep3:
+            case R.id.uploadFragmentStep4:
                 bottomNavigationView.setVisibility(BottomNavigationView.GONE);
                 break;
 

@@ -8,19 +8,24 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.FragmentUploadStep1Binding;
+import com.dev.kd1412.timtrosv.model.Room;
 
 import java.util.List;
 
 
 public class UploadFragmentStep1 extends Fragment implements View.OnClickListener {
     private FragmentUploadStep1Binding uploadStep1Binding;
+    private String room_address ;
+    private Room room;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +59,24 @@ public class UploadFragmentStep1 extends Fragment implements View.OnClickListene
         return uploadStep1Binding.getRoot();
     }
 
+    private void getFormValues() {
+        String district = uploadStep1Binding.edtDistrict.getText().toString();
+        String city = uploadStep1Binding.edtCity.getText().toString();
+        String address = uploadStep1Binding.edtAddress.getText().toString();
+
+
+        if (address.equals("")) {
+            Toast.makeText(requireContext(), "Vui lòng chọn Tỉnh/TP", Toast.LENGTH_SHORT).show();
+        } else if (district.equals("")) {
+            Toast.makeText(requireContext(), "Vui lòng chọn Quận/Huyện", Toast.LENGTH_SHORT).show();
+        } else if (city.equals("")) {
+            Toast.makeText(requireContext(), "Vui lòng nhập địa chỉ", Toast.LENGTH_SHORT).show();
+        }else {
+            room_address = ""+ address + ", " + district + ", " + city;
+            room.setmLocation(room_address);
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -62,7 +85,9 @@ public class UploadFragmentStep1 extends Fragment implements View.OnClickListene
                 Navigation.findNavController(requireView()).navigateUp();
                 break;
             case R.id.fab_next:
-                Navigation.findNavController(requireView()).navigate(R.id.action_uploadFragmentStep1_to_uploadFragmentStep2);
+                getFormValues();
+                Navigation.findNavController(requireView()).navigate(UploadFragmentStep1Directions
+                        .actionUploadFragmentStep1ToUploadFragmentStep2(room));
                 break;
         }
     }

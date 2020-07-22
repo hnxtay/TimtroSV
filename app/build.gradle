@@ -72,4 +72,5 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 
 
+
 }

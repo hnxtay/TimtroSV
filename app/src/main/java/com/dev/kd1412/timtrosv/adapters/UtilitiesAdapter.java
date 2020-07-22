@@ -1,8 +1,6 @@
 package com.dev.kd1412.timtrosv.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -43,7 +41,7 @@ public class UtilitiesAdapter extends RecyclerView.Adapter<UtilitiesAdapter.Util
                 holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.wifi);
                 break;
             case "wc":
-                holder.utilitiesItemBinding.tvUtilitiesName.setText("Phòng vệ sinh");
+                holder.utilitiesItemBinding.tvUtilitiesName.setText("WC riêng");
                 holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.wc);
                 break;
             case "refrigerator":
@@ -51,7 +49,7 @@ public class UtilitiesAdapter extends RecyclerView.Adapter<UtilitiesAdapter.Util
                 holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.fridge);
                 break;
             case "park":
-                holder.utilitiesItemBinding.tvUtilitiesName.setText("Chỗ để xe");
+                holder.utilitiesItemBinding.tvUtilitiesName.setText("Giữ xe");
                 holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.parking);
                 break;
             case "free time":
@@ -59,12 +57,16 @@ public class UtilitiesAdapter extends RecyclerView.Adapter<UtilitiesAdapter.Util
                 holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.free_time);
                 break;
             case "kitchen":
-                holder.utilitiesItemBinding.tvUtilitiesName.setText("Phòng bếp");
+                holder.utilitiesItemBinding.tvUtilitiesName.setText("Bếp");
                 holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.kitchen);
                 break;
             case "washing machine":
                 holder.utilitiesItemBinding.tvUtilitiesName.setText("Máy giặt");
                 holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.washing_machine);
+                break;
+            case "air conditional":
+                holder.utilitiesItemBinding.tvUtilitiesName.setText("Điều hòa");
+                holder.utilitiesItemBinding.imgUtilities.setImageResource(R.drawable.air_conditional);
                 break;
         }
     }

@@ -31,16 +31,20 @@ public class Room implements Parcelable {
     @SerializedName("room_utilities")
     public List<String> mUtilities;
 
+    @SerializedName("room_description")
+    public String mDescription;
+
     public Room() {
     }
 
-    public Room(int id, String mImg, int mPrice, String mLocation, int mAcreage, List<String> mUtilities) {
+    public Room(int id, String mImg, int mPrice, String mLocation, int mAcreage, List<String> mUtilities, String mDescription) {
         this.id = id;
         this.mImg = mImg;
         this.mPrice = mPrice;
         this.mLocation = mLocation;
         this.mAcreage = mAcreage;
         this.mUtilities = mUtilities;
+        this.mDescription = mDescription;
     }
 
     protected Room(Parcel in) {
@@ -144,6 +148,14 @@ public class Room implements Parcelable {
 
     public void setmUtilities(List<String> mUtilities) {
         this.mUtilities = mUtilities;
+    }
+
+    public String getmDescription() {
+        return mDescription;
+    }
+
+    public void setmDescription(String mDescription) {
+        this.mDescription = mDescription;
     }
 }
 

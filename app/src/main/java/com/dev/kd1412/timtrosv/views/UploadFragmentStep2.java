@@ -14,9 +14,11 @@ import android.view.ViewGroup;
 
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.FragmentUploadStep2Binding;
+import com.dev.kd1412.timtrosv.model.Room;
 
 public class UploadFragmentStep2 extends Fragment implements View.OnClickListener{
     FragmentUploadStep2Binding uploadStep2Binding;
+    private Room room;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class UploadFragmentStep2 extends Fragment implements View.OnClickListene
 
         uploadStep2Binding.fabBack.setOnClickListener(this);
         uploadStep2Binding.fabNext.setOnClickListener( this);
+
+
         return uploadStep2Binding.getRoot();
     }
 

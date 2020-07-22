@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.FragmentUploadStep3Binding;
@@ -53,6 +54,9 @@ public class UploadFragmentStep3 extends Fragment {
         uploadStep3Binding.fabBack.setOnClickListener(v -> {
             Navigation.findNavController(requireView()).navigateUp();
         });
+        uploadStep3Binding.fabNext.setOnClickListener(v -> {
+            Navigation.findNavController(requireView()).navigate(R.id.action_uploadFragmentStep3_to_uploadFragmentStep4);
+        });
 
         uploadStep3Binding.btnUpload.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -60,11 +64,10 @@ public class UploadFragmentStep3 extends Fragment {
             startActivityForResult(intent, REQUEST_CODE);
         });
 
-        uploadStep3Binding.fabNext.setOnClickListener(v -> {
-        });
 
         return uploadStep3Binding.getRoot();
     }
+
 
 }
 

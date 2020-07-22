@@ -48,11 +48,10 @@ public class DebugActivity extends AppCompatActivity {
                     RoomServiceApi.getInstance().postUser(user).enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
-                            if (response.body() != null){
+                            if (response.body() != null) {
 
-                            }else {
-//                                Toast.makeText(DebugActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
-                                Snackbar.make(debugBinding.getRoot(),R.string.text_user_already_exists,Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                Snackbar.make(debugBinding.getRoot(), R.string.text_user_already_exists, Snackbar.LENGTH_SHORT).show();
                                 debugBinding.textView7.setText(R.string.text_user_already_exists);
                             }
                         }

@@ -66,6 +66,7 @@ public class RoomDetailFragment extends Fragment {
         roomDetailBinding.rcvUtilities.setLayoutManager(new GridLayoutManager(requireContext(),4));
 
         roomDetailBinding.toolbar.setOnClickListener(v -> onBackPress());
+        roomDetailBinding.tvUtilities.setText("Tiện ích(" +room.getmUtilities().size()+ ")");
 
         return roomDetailBinding.getRoot();
     }
