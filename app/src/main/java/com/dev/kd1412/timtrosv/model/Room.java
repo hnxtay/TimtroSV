@@ -19,6 +19,9 @@ public class Room implements Parcelable {
     @SerializedName("room_image")
     public String mImg;
 
+    @SerializedName("user_id")
+    public String mUserID;
+
     @SerializedName("room_price")
     public int mPrice;
 
@@ -37,9 +40,10 @@ public class Room implements Parcelable {
     public Room() {
     }
 
-    public Room(int id, String mImg, int mPrice, String mLocation, int mAcreage, List<String> mUtilities, String mDescription) {
+    public Room(int id, String mImg, String mUserID, int mPrice, String mLocation, int mAcreage, List<String> mUtilities, String mDescription) {
         this.id = id;
         this.mImg = mImg;
+        this.mUserID = mUserID;
         this.mPrice = mPrice;
         this.mLocation = mLocation;
         this.mAcreage = mAcreage;
@@ -50,25 +54,12 @@ public class Room implements Parcelable {
     protected Room(Parcel in) {
         id = in.readInt();
         mImg = in.readString();
+        mUserID = in.readString();
         mPrice = in.readInt();
         mLocation = in.readString();
         mAcreage = in.readInt();
         mUtilities = in.createStringArrayList();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(mImg);
-        dest.writeInt(mPrice);
-        dest.writeString(mLocation);
-        dest.writeInt(mAcreage);
-        dest.writeStringList(mUtilities);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        mDescription = in.readString();
     }
 
     public static final Creator<Room> CREATOR = new Creator<Room>() {
@@ -82,25 +73,6 @@ public class Room implements Parcelable {
             return new Room[size];
         }
     };
-
-    @BindingAdapter("room_image")
-    public static void
-    loadImage(ImageView view, String imageUrl) {
-        Glide.with(view.getContext())
-                .load(imageUrl)
-                .into(view);
-    }
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "mImg='" + mImg + '\'' +
-                ", mPrice=" + mPrice +
-                ", mLocation='" + mLocation + '\'' +
-                ", mAcreage=" + mAcreage +
-                ", mUtilities=" + mUtilities +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -116,6 +88,14 @@ public class Room implements Parcelable {
 
     public void setmImg(String mImg) {
         this.mImg = mImg;
+    }
+
+    public String getmUserID() {
+        return mUserID;
+    }
+
+    public void setmUserID(String mUserID) {
+        this.mUserID = mUserID;
     }
 
     public int getmPrice() {
@@ -156,6 +136,42 @@ public class Room implements Parcelable {
 
     public void setmDescription(String mDescription) {
         this.mDescription = mDescription;
+    }
+
+    @BindingAdapter("room_image")
+    public static void
+    loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl)
+                .into(view);
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "mImg='" + mImg + '\'' +
+                ", mPrice=" + mPrice +
+                ", mLocation='" + mLocation + '\'' +
+                ", mAcreage=" + mAcreage +
+                ", mUtilities=" + mUtilities +
+                '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(mImg);
+        dest.writeString(mUserID);
+        dest.writeInt(mPrice);
+        dest.writeString(mLocation);
+        dest.writeInt(mAcreage);
+        dest.writeStringList(mUtilities);
+        dest.writeString(mDescription);
     }
 }
 

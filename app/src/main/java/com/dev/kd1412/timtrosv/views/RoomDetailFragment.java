@@ -1,10 +1,15 @@
 package com.dev.kd1412.timtrosv.views;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -17,9 +22,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.adapters.ImageAdapter;
 import com.dev.kd1412.timtrosv.adapters.UtilitiesAdapter;
+import com.dev.kd1412.timtrosv.databinding.ContactBottomSheetDialogBinding;
 import com.dev.kd1412.timtrosv.databinding.FragmentRoomDetailsBinding;
 import com.dev.kd1412.timtrosv.model.Room;
 import com.dev.kd1412.timtrosv.model.Utilities;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -57,17 +64,34 @@ public class RoomDetailFragment extends Fragment {
 
         ImageAdapter imageAdapter = new ImageAdapter(arrayList);
         roomDetailBinding.viewPager.setAdapter(imageAdapter);
-        for (int i = 0; i < room.getmUtilities().size(); ++i){
+        for (int i = 0; i < room.getmUtilities().size(); ++i) {
             utilities = new Utilities(room.mUtilities.get(i));
             utilitiesArrayList.add(utilities);
         }
         utilitiesAdapter = new UtilitiesAdapter(utilitiesArrayList);
         roomDetailBinding.rcvUtilities.setAdapter(utilitiesAdapter);
-        roomDetailBinding.rcvUtilities.setLayoutManager(new GridLayoutManager(requireContext(),4));
+        roomDetailBinding.rcvUtilities.setLayoutManager(new GridLayoutManager(requireContext(), 4));
 
         roomDetailBinding.toolbar.setOnClickListener(v -> onBackPress());
-        roomDetailBinding.tvUtilities.setText("Tiện ích(" +room.getmUtilities().size()+ ")");
+        roomDetailBinding.tvUtilities.setText("Tiện ích(" + room.getmUtilities().size() + ")");
 
+        roomDetailBinding.fabContact.setOnClickListener(v -> {
+            BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+            View view = getLayoutInflater().inflate(R.layout.contact_bottom_sheet_dialog,null);
+            dialog.setContentView(view);
+            TextView btn_call = view.findViewById(R.id.btn_call);
+            TextView btn_message = view.findViewById(R.id.btn_message);
+            btn_call.setOnClickListener(v1 -> {
+                Intent intentCall = new Intent(Intent.ACTION_CALL);
+                intentCall.setData(Uri.parse("tel: 0354122241"));
+                requireContext().startActivity(intentCall);
+            });
+            btn_message.setOnClickListener(v1 -> {
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage("1900", null, "", null, null);
+            });
+            dialog.show();
+        });
         return roomDetailBinding.getRoot();
     }
 

@@ -72,6 +72,7 @@
 
                         <AutoCompleteTextView
                             android:id="@+id/edt_city"
+                            android:imeOptions="actionNext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +96,7 @@
 
                         <AutoCompleteTextView
                             android:id="@+id/edt_district"
+                            android:imeOptions="actionNext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -113,6 +115,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_address"
+                            android:imeOptions="actionDone"
                             android:hint="@string/text_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />

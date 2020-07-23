@@ -19,13 +19,11 @@ import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.FragmentUploadStep1Binding;
 import com.dev.kd1412.timtrosv.model.Room;
 
-import java.util.List;
-
 
 public class UploadFragmentStep1 extends Fragment implements View.OnClickListener {
     private FragmentUploadStep1Binding uploadStep1Binding;
     private String room_address ;
-    private Room room;
+    private Room room = new Room();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,15 +63,18 @@ public class UploadFragmentStep1 extends Fragment implements View.OnClickListene
         String address = uploadStep1Binding.edtAddress.getText().toString();
 
 
-        if (address.equals("")) {
+        if (city.equals("")) {
             Toast.makeText(requireContext(), "Vui lòng chọn Tỉnh/TP", Toast.LENGTH_SHORT).show();
         } else if (district.equals("")) {
             Toast.makeText(requireContext(), "Vui lòng chọn Quận/Huyện", Toast.LENGTH_SHORT).show();
-        } else if (city.equals("")) {
+        } else if (address.equals("")) {
             Toast.makeText(requireContext(), "Vui lòng nhập địa chỉ", Toast.LENGTH_SHORT).show();
         }else {
             room_address = ""+ address + ", " + district + ", " + city;
             room.setmLocation(room_address);
+
+            Navigation.findNavController(requireView()).navigate(UploadFragmentStep1Directions
+                    .actionUploadFragmentStep1ToUploadFragmentStep2(room));
         }
     }
 
@@ -86,8 +87,7 @@ public class UploadFragmentStep1 extends Fragment implements View.OnClickListene
                 break;
             case R.id.fab_next:
                 getFormValues();
-                Navigation.findNavController(requireView()).navigate(UploadFragmentStep1Directions
-                        .actionUploadFragmentStep1ToUploadFragmentStep2(room));
+                Log.d("TAG", "onClick: " + room.mLocation + " get value: " + room_address);
                 break;
         }
     }

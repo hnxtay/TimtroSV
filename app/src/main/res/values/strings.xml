@@ -43,4 +43,7 @@
     <string name="text_phonenumber">Số điện thoại liên lạc</string>
     <string name="text_description">Mô tả chi tiết</string>
     <string name="text_address">Nhập số nhà, tên đường</string>
+    <string name="bottom_text_sheet_option_heading">Liên lạc</string>
+    <string name="text_bottom_sheet_option_call">Gọi điện</string>
+    <string name="text_bottom_sheet_option_message">Nhắn tin</string>
 </resources>

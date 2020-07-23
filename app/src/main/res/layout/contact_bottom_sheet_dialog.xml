@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.  by kd1412
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_bottom_sheet_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/bottom_text_sheet_option_heading"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/btn_call"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/white"
+            android:clickable="true"
+            android:drawableStart="@drawable/ic_baseline_call_24"
+            android:drawableTint="@color/colorPrimary"
+            android:gravity="center|center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/text_bottom_sheet_option_call"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/btn_message"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/white"
+            android:clickable="true"
+            android:drawableStart="@drawable/ic_baseline_message_24"
+            android:drawableTint="@color/colorPrimary"
+            android:gravity="center|center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/text_bottom_sheet_option_message"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</layout>
