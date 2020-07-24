@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.  by kd1412
+  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -90,7 +94,7 @@
                     app:cardCornerRadius="10dp">
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_room"
+                        android:id="@+id/tv_room_aploaded"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
@@ -119,6 +123,27 @@
                         android:drawableTint="@color/colorPrimary"
                         android:padding="16dp"
                         android:text="@string/text_debug"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    app:cardCornerRadius="10dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_baseline_power_settings_new_24"
+                        android:drawableTint="@color/colorPrimary"
+                        android:padding="16dp"
+                        android:text="@string/text_about"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
                 </com.google.android.material.card.MaterialCardView>
 

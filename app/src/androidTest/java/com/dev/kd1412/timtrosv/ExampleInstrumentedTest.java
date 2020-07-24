@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 package com.dev.kd1412.timtrosv;
 
 import android.content.Context;

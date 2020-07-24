@@ -1,3 +1,7 @@
+<!--
+  ~ Copyright (c) 2020.  by kd1412
+  -->
+
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">

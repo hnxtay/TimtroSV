@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.  by kd1412
+  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -13,7 +17,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -72,9 +77,9 @@
 
                         <AutoCompleteTextView
                             android:id="@+id/edt_city"
-                            android:imeOptions="actionNext"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -96,9 +101,9 @@
 
                         <AutoCompleteTextView
                             android:id="@+id/edt_district"
-                            android:imeOptions="actionNext"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -115,10 +120,10 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_address"
-                            android:imeOptions="actionDone"
-                            android:hint="@string/text_address"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:hint="@string/text_address"
+                            android:imeOptions="actionDone" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -135,6 +140,7 @@
             android:text="@string/next"
             app:icon="@drawable/ic_baseline_arrow_forward_24"
             app:iconGravity="end"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -147,6 +153,7 @@
             android:layout_marginBottom="16dp"
             android:text="@string/cancel"
             app:icon="@drawable/ic_baseline_arrow_back_24"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

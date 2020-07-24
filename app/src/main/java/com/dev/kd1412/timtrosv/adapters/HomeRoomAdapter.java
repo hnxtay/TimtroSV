@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 package com.dev.kd1412.timtrosv.adapters;
 
 import android.view.LayoutInflater;
@@ -27,9 +31,6 @@ public class HomeRoomAdapter extends RecyclerView.Adapter<HomeRoomAdapter.RoomAd
         this.roomArray = roomArray;
         this.itemClickListener = itemClickListener;
     }
-
-
-
 
     @NonNull
     @Override
@@ -69,6 +70,10 @@ public class HomeRoomAdapter extends RecyclerView.Adapter<HomeRoomAdapter.RoomAd
         public void bind(Room room) {
             itemBinding.setRoom(room);
             itemBinding.getRoot().setOnClickListener(view -> onClickListener.onItemClick(room));
+            itemBinding.getRoot().setOnCreateContextMenuListener((menu, v, menuInfo) -> {
+                menu.add("Sửa");
+                menu.add("Xóa");
+            });
             itemBinding.hasPendingBindings();
         }
     }

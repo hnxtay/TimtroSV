@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 apply plugin: 'com.android.application'
 apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'com.google.gms.google-services'

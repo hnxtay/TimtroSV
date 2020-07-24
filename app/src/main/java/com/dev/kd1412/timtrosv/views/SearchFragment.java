@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 package com.dev.kd1412.timtrosv.views;
 
 import android.os.Bundle;
@@ -46,7 +50,7 @@ public class SearchFragment extends Fragment implements OnItemClickListener {
                 , false);
 
         roomArrayList = new ArrayList<>();
-        roomAdapter = new SearchResultAdapter(roomArrayList, this::onItemClick);
+        roomAdapter = new SearchResultAdapter(roomArrayList, this);
         fragmentSearchBinding.rcvResult.setAdapter(roomAdapter);
         fragmentSearchBinding.rcvResult.setHasFixedSize(true);
         fragmentSearchBinding.rcvResult.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -62,8 +66,12 @@ public class SearchFragment extends Fragment implements OnItemClickListener {
                     RoomServiceApi.getInstance().getRoomLocation(location).enqueue(new Callback<List<Room>>() {
                         @Override
                         public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
-                            roomAdapter.updateList(response.body());
-                            fragmentSearchBinding.tvResult.setText("Kết quả tìm được(" + response.body().size() + ")");
+                            if (response.body() != null) {
+                                roomAdapter.updateList(response.body());
+                                fragmentSearchBinding.tvResult.setText("Kết quả tìm được(" + response.body().size() + ")");
+                            } else {
+                                fragmentSearchBinding.tvResult.setText("Không có kết quả phù hợp");
+                            }
                         }
 
                         @Override
@@ -87,6 +95,6 @@ public class SearchFragment extends Fragment implements OnItemClickListener {
 
     @Override
     public void onItemClick(Room room) {
-//        Navigation.findNavController(requireView()).navigate();
+        Navigation.findNavController(requireView()).navigate(SearchFragmentDirections.actionNavigationSearchToRoomDetailFragment(room));
     }
 }

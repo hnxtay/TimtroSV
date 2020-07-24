@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 package com.dev.kd1412.timtrosv.views;
 
 import android.content.Intent;
@@ -56,10 +60,25 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         profileBinding = DataBindingUtil.inflate(inflater
-                ,R.layout.fragment_profile,container,false);
+                , R.layout.fragment_profile, container, false);
 
-        profileBinding.tvUsername.setText(FirebaseAuth.getInstance().getCurrentUser()
-                .getDisplayName());
+        RoomServiceApi.getInstance().getUser(firebaseUser.getUid()).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.body() != null) {
+                    user = response.body();
+                    profileBinding.tvUsername.setText(user.getmFullName());
+                    profileBinding.tvRole.setText(user.getmRole());
+                    Log.d("TAG", "onResponse: " + response.body().getmFullName());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+
         Glide.with(requireContext()).load(FirebaseAuth.getInstance().getCurrentUser()
                 .getPhotoUrl())
                 .circleCrop()
@@ -78,6 +97,9 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
 
+        profileBinding.tvRoomAploaded.setOnClickListener(v -> {
+            Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_roomUploadedFragment);
+        });
 
         profileBinding.tvUsername.setOnClickListener(v -> {
             Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_profileDetailsFragment);

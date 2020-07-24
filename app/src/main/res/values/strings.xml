@@ -1,3 +1,7 @@
+<!--
+  ~ Copyright (c) 2020.  by kd1412
+  -->
+
 <resources>
     <string name="app_name">TimtroSV</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -46,4 +50,6 @@
     <string name="bottom_text_sheet_option_heading">Liên lạc</string>
     <string name="text_bottom_sheet_option_call">Gọi điện</string>
     <string name="text_bottom_sheet_option_message">Nhắn tin</string>
+    <string name="text_user_uploaded">User uploaded</string>
+    <string name="text_about">About me</string>
 </resources>

@@ -2,15 +2,23 @@
  * Copyright (c) 2020.  by kd1412
  */
 
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 package com.dev.kd1412.timtrosv.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,13 +50,18 @@ import retrofit2.Response;
 public class DebugActivity extends AppCompatActivity {
     private ActivityDebugBinding debugBinding;
     public static final int REQUEST_CODE = 1;
+    private static final int CALL_PERMISSION_CODE = 100;
+    private static final int STORAGE_PERMISSION_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         debugBinding = DataBindingUtil.setContentView(this, R.layout.activity_debug);
+        checkUser();
         debugBinding.btnUpload.setOnClickListener(v -> {
-            uploadImagetoImgur();
+            if(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE,STORAGE_PERMISSION_CODE)){
+                uploadImagetoImgur();
+            }
         });
     }
 
@@ -113,7 +126,8 @@ public class DebugActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             if (response.body() != null) {
-
+                                Snackbar.make(debugBinding.getRoot(), R.string.text_user_uploaded, Snackbar.LENGTH_SHORT).show();
+                                debugBinding.tvDebug.setText(R.string.text_user_uploaded);
                             } else {
                                 Snackbar.make(debugBinding.getRoot(), R.string.text_user_already_exists, Snackbar.LENGTH_SHORT).show();
                                 debugBinding.tvDebug.setText(R.string.text_user_already_exists);
@@ -135,4 +149,53 @@ public class DebugActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean checkPermission(String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(DebugActivity.this, permission)
+                == PackageManager.PERMISSION_DENIED) {
+            // Requesting the permission
+            ActivityCompat.requestPermissions(DebugActivity.this,
+                    new String[] { permission },
+                    requestCode);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == CALL_PERMISSION_CODE) {
+//            if (grantResults.length > 0
+//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                Toast.makeText(DebugActivity.this,
+//                        "Call Permission Granted",
+//                        Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//            else {
+//                Toast.makeText(DebugActivity.this,
+//                        "Call Permission Denied",
+//                        Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//        }
+//        else if (requestCode == STORAGE_PERMISSION_CODE) {
+//            if (grantResults.length > 0
+//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                Toast.makeText(DebugActivity.this,
+//                        "Storage Permission Granted",
+//                        Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//            else {
+//                Toast.makeText(DebugActivity.this,
+//                        "Storage Permission Denied",
+//                        Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//        }
+//    }
 }

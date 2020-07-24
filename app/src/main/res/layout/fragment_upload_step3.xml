@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.  by kd1412
+  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -83,7 +87,8 @@
                 <ImageView
                     android:id="@+id/img_upload"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
                     app:srcCompat="@drawable/ex_room" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

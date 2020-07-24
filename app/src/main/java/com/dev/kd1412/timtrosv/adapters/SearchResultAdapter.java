@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020.  by kd1412
+ */
+
 package com.dev.kd1412.timtrosv.adapters;
 
 import android.view.LayoutInflater;
@@ -65,6 +69,10 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         public void bind(Object o) {
             binding.setVariable(BR.room, o);
             binding.getRoot().setOnClickListener(view -> onItemClickListener.onItemClick(room));
+            binding.getRoot().setOnCreateContextMenuListener((menu, v, menuInfo) -> {
+                menu.add("Sửa");
+                menu.add("Xóa");
+            });
             binding.hasPendingBindings();
         }
     }
