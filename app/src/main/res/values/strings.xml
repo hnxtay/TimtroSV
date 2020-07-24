@@ -16,9 +16,9 @@
     <string name="search_hint">Tìm theo quận, thành phố,..</string>
     <string name="home_label">Phòng trọ mới nhất</string>
     <string name="profile_fragment">Đây là trang Profile thui</string>
-    <string name="price">Giá: %,dđ</string>
-    <string name="acreage">%d m2</string>
-    <string name="acreage_detail">Diện tích: %dm2</string>
+    <string name="price">Giá: %,d₫</string>
+    <string name="acreage">%d m²</string>
+    <string name="acreage_detail">Diện tích: %dm²</string>
     <string name="room_detail">Chi tiết phòng trọ</string>
     <string name="splash_loading">Đang tải dữ liệu...</string>
     <string name="submit">Submit</string>

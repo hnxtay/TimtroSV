@@ -39,6 +39,7 @@
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView

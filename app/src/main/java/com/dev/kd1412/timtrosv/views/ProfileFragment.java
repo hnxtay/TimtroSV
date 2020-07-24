@@ -104,6 +104,13 @@ public class ProfileFragment extends Fragment {
         profileBinding.tvUsername.setOnClickListener(v -> {
             Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_profileDetailsFragment);
         });
+
+        profileBinding.tvAbout.setOnClickListener(v -> {
+            Toast.makeText(requireContext(), "Features are in development process", Toast.LENGTH_SHORT).show();
+        });
+        profileBinding.tvSetting.setOnClickListener(v -> {
+            Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_settingFragment);
+        });
         return profileBinding.getRoot();
     }
 }
