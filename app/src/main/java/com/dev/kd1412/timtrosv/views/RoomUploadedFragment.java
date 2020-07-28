@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,14 +42,16 @@ import retrofit2.Response;
 
 public class RoomUploadedFragment extends Fragment implements OnItemClickListener {
     private FragmentRoomUploadedBinding uploadedBinding;
-    private Room room;
-    private ArrayList<Room> roomArrayList;
+    public Room room;
+    public ArrayList<Room> roomArrayList;
     private HomeRoomAdapter adapter;
+    private int room_id;
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        uploadedBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_room_uploaded,container,false);
+        uploadedBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_room_uploaded, container, false);
 
         roomArrayList = new ArrayList<>();
         adapter = new HomeRoomAdapter(roomArrayList, this);
@@ -59,10 +62,14 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
         RoomServiceApi.getInstance().getRoomByUserID(firebaseUser.getUid()).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
-                if (response.body() != null && !response.body().get(0).mUserID.toString().equals("")){
+                if (response.body() != null && !response.body().get(0).mUserID.toString().equals("")) {
                     adapter.updateList(response.body());
-                    uploadedBinding.tvRoomUploaded.setText("Bài viết đã đăng (" +response.body().size()+ ")");
-                }else {
+                    Log.d("TAG", "onResponse: " + call.request().url() + "\n"+ response.body().get(3).id);
+                    for (int i = 0; i < response.body().size(); i++) {
+                        roomArrayList.add(response.body().get(i));
+                    }
+                    uploadedBinding.tvRoomUploaded.setText("Bài viết đã đăng (" + response.body().size() + ")");
+                } else {
                     uploadedBinding.tvRoomUploaded.setText("Bạn chưa đăng tin ");
                 }
             }
@@ -82,7 +89,7 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        switch (item.getTitle().toString()){
+        switch (item.getTitle().toString()) {
             case "Sửa":
                 Toast.makeText(requireContext(), "Features are in development process", Toast.LENGTH_SHORT).show();
                 break;
@@ -93,5 +100,21 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
                 throw new IllegalStateException("Unexpected value: " + item.getTitle().toString());
         }
         return super.onContextItemSelected(item);
+    }
+
+    private void deleteRoom(int roomId) {
+        room = roomArrayList.get(roomId);
+        Log.d("TAG", "deleteRoom: " + room.id + " " + roomArrayList.get(1).id);
+//        RoomServiceApi.getInstance().deleteRoom(room.id).enqueue(new Callback<Room>() {
+//            @Override
+//            public void onResponse(Call<Room> call, Response<Room> response) {
+//                Toast.makeText(requireContext(), "Xoa thanh cong", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Room> call, Throwable t) {
+//
+//            }
+//        });
     }
 }

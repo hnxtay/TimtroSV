@@ -13,6 +13,7 @@ import java.util.List;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -32,6 +33,9 @@ public interface RoomService {
 
     @PUT("rooms/{id}")
     Call<Room> updateRoom(@Body Room room, @Path("id") int id);
+
+    @DELETE("rooms/{id}")
+    Call<Room> deleteRoom(@Path("id") int id);
 
     @GET("/rooms/location/{location}")
     Call<List<Room>> getRoomLocation(@Path("location")  String location);
