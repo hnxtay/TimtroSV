@@ -44,7 +44,7 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
     private FragmentRoomUploadedBinding uploadedBinding;
     public Room room;
     public ArrayList<Room> roomArrayList;
-    private HomeRoomAdapter adapter;
+    private SearchResultAdapter adapter;
     private int room_id;
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -54,7 +54,7 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
         uploadedBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_room_uploaded, container, false);
 
         roomArrayList = new ArrayList<>();
-        adapter = new HomeRoomAdapter(roomArrayList, this);
+        adapter = new SearchResultAdapter(roomArrayList, this);
         uploadedBinding.rcvRoomUploaded.setHasFixedSize(true);
         uploadedBinding.rcvRoomUploaded.setAdapter(adapter);
         uploadedBinding.rcvRoomUploaded.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -104,17 +104,5 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
 
     private void deleteRoom(int roomId) {
         room = roomArrayList.get(roomId);
-        Log.d("TAG", "deleteRoom: " + room.id + " " + roomArrayList.get(1).id);
-//        RoomServiceApi.getInstance().deleteRoom(room.id).enqueue(new Callback<Room>() {
-//            @Override
-//            public void onResponse(Call<Room> call, Response<Room> response) {
-//                Toast.makeText(requireContext(), "Xoa thanh cong", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Room> call, Throwable t) {
-//
-//            }
-//        });
     }
 }

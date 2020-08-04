@@ -17,6 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dev.kd1412.timtrosv.views.HomeFragment;
 import com.dev.kd1412.timtrosv.views.SearchFragment;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 navController.navigate(R.id.navigation_home);
                 break;
             case R.id.navigation_news:
-                navController.navigate(R.id.navigation_news);
+                Toast.makeText(this, "Features are in development process", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.navigation_search:
                 navController.navigate(R.id.navigation_search);

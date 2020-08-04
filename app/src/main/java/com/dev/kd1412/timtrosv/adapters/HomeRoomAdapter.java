@@ -70,10 +70,6 @@ public class HomeRoomAdapter extends RecyclerView.Adapter<HomeRoomAdapter.RoomAd
         public void bind(Room room) {
             itemBinding.setRoom(room);
             itemBinding.getRoot().setOnClickListener(view -> onClickListener.onItemClick(room));
-            itemBinding.getRoot().setOnCreateContextMenuListener((menu, v, menuInfo) -> {
-                menu.add("Sửa");
-                menu.add("Xóa");
-            });
             itemBinding.hasPendingBindings();
         }
     }

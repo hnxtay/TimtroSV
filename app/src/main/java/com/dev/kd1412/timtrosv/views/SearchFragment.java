@@ -40,7 +40,7 @@ import retrofit2.Response;
 public class SearchFragment extends Fragment implements OnItemClickListener {
     private FragmentSearchBinding fragmentSearchBinding;
     private Room room;
-    private SearchResultAdapter roomAdapter;
+    private HomeRoomAdapter roomAdapter;
     private ArrayList<Room> roomArrayList;
 
     @Override
@@ -50,7 +50,7 @@ public class SearchFragment extends Fragment implements OnItemClickListener {
                 , false);
 
         roomArrayList = new ArrayList<>();
-        roomAdapter = new SearchResultAdapter(roomArrayList, this);
+        roomAdapter = new HomeRoomAdapter(roomArrayList, this);
         fragmentSearchBinding.rcvResult.setAdapter(roomAdapter);
         fragmentSearchBinding.rcvResult.setHasFixedSize(true);
         fragmentSearchBinding.rcvResult.setLayoutManager(new LinearLayoutManager(requireContext()));
