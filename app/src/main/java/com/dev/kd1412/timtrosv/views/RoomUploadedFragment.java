@@ -62,7 +62,7 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
         RoomServiceApi.getInstance().getRoomByUserID(firebaseUser.getUid()).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
-                if (response.body() != null && !response.body().get(0).mUserID.toString().equals("")) {
+                if (response.body() != null && !response.body().get(0).mUserID.equals("")) {
                     adapter.updateList(response.body());
                     Log.d("TAG", "onResponse: " + call.request().url() + "\n"+ response.body().get(3).id);
                     for (int i = 0; i < response.body().size(); i++) {
@@ -91,13 +91,11 @@ public class RoomUploadedFragment extends Fragment implements OnItemClickListene
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getTitle().toString()) {
             case "Sửa":
-                Toast.makeText(requireContext(), "Features are in development process", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Features are in development process" + item.getItemId(), Toast.LENGTH_SHORT).show();
                 break;
             case "Xóa":
                 Toast.makeText(requireContext(), "Features are in development process.", Toast.LENGTH_SHORT).show();
                 break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + item.getTitle().toString());
         }
         return super.onContextItemSelected(item);
     }

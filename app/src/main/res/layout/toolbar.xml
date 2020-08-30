@@ -26,9 +26,8 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:transitionGroup="false"
-                app:buttonGravity="center_vertical"
                 app:contentInsetStart="0dp"
-                app:logo="@drawable/logo"/>
+                app:logo="@drawable/logo" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

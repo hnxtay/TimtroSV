@@ -20,35 +20,14 @@
         android:layout_height="match_parent"
         tools:context=".activities.DebugActivity">
 
-        <ImageButton
-            android:id="@+id/btn_upload"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="120dp"
-            android:background="@drawable/ic_baseline_add_photo_alternate_24"
+        <fragment
+            android:id="@+id/gg_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/img_debug"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_upload"
-            app:srcCompat="@drawable/ex_room" />
-
-        <TextView
-            android:id="@+id/tv_debug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="96dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_debug"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:gravity="center"
-            tools:text="TextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

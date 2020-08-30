@@ -66,8 +66,8 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             this.onItemClickListener = onItemClickListener;
         }
 
-        public void bind(Object o) {
-            binding.setVariable(BR.room, o);
+        public void bind(Room room) {
+            binding.setRoom(room);
             binding.getRoot().setOnClickListener(view -> onItemClickListener.onItemClick(room));
             binding.getRoot().setOnCreateContextMenuListener((menu, v, menuInfo) -> {
                 menu.add("Sửa");

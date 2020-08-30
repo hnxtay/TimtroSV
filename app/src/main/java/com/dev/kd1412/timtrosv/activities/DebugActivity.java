@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
@@ -32,6 +33,17 @@ import com.dev.kd1412.timtrosv.R;
 import com.dev.kd1412.timtrosv.databinding.ActivityDebugBinding;
 import com.dev.kd1412.timtrosv.model.User;
 import com.dev.kd1412.timtrosv.network.RoomServiceApi;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,20 +59,58 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DebugActivity extends AppCompatActivity {
+public class DebugActivity extends AppCompatActivity implements OnMapReadyCallback {
     private ActivityDebugBinding debugBinding;
     public static final int REQUEST_CODE = 1;
     private static final int CALL_PERMISSION_CODE = 100;
     private static final int STORAGE_PERMISSION_CODE = 101;
+    private SupportMapFragment supportMapFragment;
+    private FusedLocationProviderClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         debugBinding = DataBindingUtil.setContentView(this, R.layout.activity_debug);
-        checkUser();
-        debugBinding.btnUpload.setOnClickListener(v -> {
-            if(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE,STORAGE_PERMISSION_CODE)){
-                uploadImagetoImgur();
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.gg_map);
+        client = LocationServices.getFusedLocationProviderClient(this);
+
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+        }
+
+    }
+
+    private void getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        client.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+                            googleMap.clear();
+                            LatLng latLng = new LatLng(location.getLatitude(),
+                                    location.getLongitude());
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng);
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                            googleMap.addMarker(markerOptions);
+                            Log.d("TAG", "onMapReady: " + location.toString());
+                        }
+                    });
+                }
             }
         });
     }
@@ -77,28 +127,28 @@ public class DebugActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 Uri selectedImage = data.getData();
                 Log.d("TAG", "onActivityResult: " + getPath(selectedImage));
-                debugBinding.imgDebug.setImageURI(selectedImage);
                 try {
                     ParcelFileDescriptor fileDescriptor = getApplicationContext().getContentResolver()
-                            .openFileDescriptor(selectedImage,"r",null);
+                            .openFileDescriptor(selectedImage, "r", null);
                     InputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
-                    File file = new File(getApplicationContext().getCacheDir(),getPath(selectedImage));
+                    File file = new File(getApplicationContext().getCacheDir(), getPath(selectedImage));
 
                     FileOutputStream outputStream = new FileOutputStream(file);
 
                     byte[] buffer = new byte[8 * 1024];
                     int bytes = inputStream.read(buffer);
-                    while (bytes >= 0){
-                        outputStream.write(buffer,0,inputStream.read(buffer));
+                    while (bytes >= 0) {
+                        outputStream.write(buffer, 0, inputStream.read(buffer));
                         bytes = inputStream.read(buffer);
                     }
 
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
+
     public String getPath(@NonNull Uri uri) {
         String name = "";
         Cursor cursor = getApplicationContext().getContentResolver().query(uri, null, null, null, null);
@@ -127,10 +177,8 @@ public class DebugActivity extends AppCompatActivity {
                         public void onResponse(Call<User> call, Response<User> response) {
                             if (response.body() != null) {
                                 Snackbar.make(debugBinding.getRoot(), R.string.text_user_uploaded, Snackbar.LENGTH_SHORT).show();
-                                debugBinding.tvDebug.setText(R.string.text_user_uploaded);
                             } else {
                                 Snackbar.make(debugBinding.getRoot(), R.string.text_user_already_exists, Snackbar.LENGTH_SHORT).show();
-                                debugBinding.tvDebug.setText(R.string.text_user_already_exists);
                             }
                         }
 
@@ -155,47 +203,26 @@ public class DebugActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_DENIED) {
             // Requesting the permission
             ActivityCompat.requestPermissions(DebugActivity.this,
-                    new String[] { permission },
+                    new String[]{permission},
                     requestCode);
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == CALL_PERMISSION_CODE) {
-//            if (grantResults.length > 0
-//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                Toast.makeText(DebugActivity.this,
-//                        "Call Permission Granted",
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//            else {
-//                Toast.makeText(DebugActivity.this,
-//                        "Call Permission Denied",
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//        }
-//        else if (requestCode == STORAGE_PERMISSION_CODE) {
-//            if (grantResults.length > 0
-//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                Toast.makeText(DebugActivity.this,
-//                        "Storage Permission Granted",
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//            else {
-//                Toast.makeText(DebugActivity.this,
-//                        "Storage Permission Denied",
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//        }
-//    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation();
+            }
+        }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
 }

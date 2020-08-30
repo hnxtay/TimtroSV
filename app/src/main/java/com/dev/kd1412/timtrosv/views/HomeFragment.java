@@ -40,6 +40,8 @@ import com.dev.kd1412.timtrosv.network.RoomServiceApi;
 import com.dev.kd1412.timtrosv.adapters.HomeRoomAdapter;
 import com.dev.kd1412.timtrosv.databinding.FragmentHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -89,13 +91,17 @@ public class HomeFragment extends Fragment implements OnItemClickListener {
         roomService.getRooms().enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
-                roomAdapter.updateList(response.body());
+                if (response.body() != null){
+                    roomAdapter.updateList(response.body());
+                }else {
+                    Toast.makeText(requireContext(), "Không ổn rồi Đại vương ơi T_T ", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<List<Room>> call, Throwable t) {
                 Log.d(TAG, "" + t);
-                Toast.makeText(requireContext(), "Không ổn rồi Đại vương ơi T_T fail", Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), "Không ổn rồi Đại vương ơi T_T fail", Toast.LENGTH_SHORT)
                         .show();
             }
         });
